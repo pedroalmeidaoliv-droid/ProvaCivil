@@ -1,0 +1,474 @@
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0f1115;
+  color: #e6e6e6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 15px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 6px 12px;
+  border: 1px solid #2a2d34;
+  background: #1a1d23;
+  cursor: pointer;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.tab.active {
+  background: #2d313a;
+  color: #fff;
+  border-color: #3a3f4a;
+}
+
+/* Sections */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Cards */
+.topic {
+  background: #1a1d23;
+  border: 1px solid #2a2d34;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.topic-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.topic-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+.art-badge {
+  font-size: 11px;
+  background: #2d313a;
+  padding: 2px 6px;
+  color: #bbb;
+}
+
+/* Content */
+.topic-body {
+  display: none;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #cfcfcf;
+}
+
+.topic-body.open {
+  display: block;
+}
+
+ul {
+  margin-left: 18px;
+}
+
+/* Destaques */
+.highlight {
+  background: #3a3f4a;
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.tip {
+  margin-top: 10px;
+  padding: 8px;
+  background: #20242c;
+  font-size: 13px;
+  color: #bcdcff;
+  border-left: 3px solid #4da3ff;
+}
+
+/* Quiz */
+.quiz-q {
+  background: #1a1d23;
+  border: 1px solid #2a2d34;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.opt {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #2a2d34;
+  background: #15181d;
+  cursor: pointer;
+  text-align: left;
+  color: #ccc;
+}
+
+.opt:hover {
+  background: #22262e;
+}
+
+.opt.correct {
+  background: #1f3d2b;
+  border-color: #2ecc71;
+  color: #a7f3c1;
+}
+
+.opt.wrong {
+  background: #3a1f1f;
+  border-color: #e74c3c;
+  color: #f5b7b1;
+}
+
+.feedback {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* Pequeno refinamento */
+h2 {
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .container { padding: 1rem 0; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tab { padding: 6px 14px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: transparent; cursor: pointer; font-size: 13px; color: var(--color-text-secondary); transition: all 0.15s; }
+  .tab:hover { background: var(--color-background-secondary); }
+  .tab.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; font-weight: 500; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .topic { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 12px; }
+  .topic-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; cursor: pointer; }
+  .topic-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+  .art-badge { font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-secondary); white-space: nowrap; flex-shrink: 0; }
+  .topic-body { display: none; margin-top: 12px; padding-top: 12px; border-top: 0.5px solid var(--color-border-tertiary); }
+  .topic-body.open { display: block; }
+  .topic-body p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 8px; }
+  .topic-body ul { padding-left: 1.2rem; }
+  .topic-body li { font-size: 14px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 4px; }
+  .highlight { background: var(--color-background-warning); color: var(--color-text-warning); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-weight: 500; }
+  .tip { background: var(--color-background-info); color: var(--color-text-info); border-radius: var(--border-radius-md); padding: 8px 12px; font-size: 13px; margin-top: 8px; line-height: 1.6; }
+  .quiz-q { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 12px; }
+  .quiz-q p { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; line-height: 1.6; }
+  .options { display: flex; flex-direction: column; gap: 6px; }
+  .opt { padding: 8px 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); font-size: 13px; cursor: pointer; color: var(--color-text-secondary); background: transparent; text-align: left; transition: all 0.15s; }
+  .opt:hover { background: var(--color-background-secondary); }
+  .opt.correct { background: var(--color-background-success); color: var(--color-text-success); border-color: transparent; }
+  .opt.wrong { background: var(--color-background-danger); color: var(--color-text-danger); border-color: transparent; }
+  .feedback { font-size: 13px; margin-top: 8px; padding: 8px 12px; border-radius: var(--border-radius-md); line-height: 1.6; }
+  .feedback.ok { background: var(--color-background-success); color: var(--color-text-success); }
+  .feedback.no { background: var(--color-background-danger); color: var(--color-text-danger); }
+  .score-bar { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+  .score-num { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .score-label { font-size: 13px; color: var(--color-text-secondary); }
+  .toggle-icon { color: var(--color-text-tertiary); font-size: 18px; transition: transform 0.2s; flex-shrink: 0; }
+  .toggle-icon.open { transform: rotate(180deg); }
+  h2 { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem; }
+</style>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="showSection('bens')">Bens (79–103)</button>
+    <button class="tab" onclick="showSection('fatos')">Fatos Jurídicos (104–114)</button>
+    <button class="tab" onclick="showSection('rep')">Representação (115–120)</button>
+    <button class="tab" onclick="showSection('quiz')">Questões</button>
+  </div>
+
+  <!-- BENS -->
+  <div class="section active" id="bens">
+    <h2>Bens — arts. 79 a 103</h2>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Bens imóveis</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 79–81</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 79</strong> — São imóveis: o solo + tudo quanto se lhe incorporar natural ou artificialmente.</p>
+        <ul>
+          <li><span class="highlight">Naturalmente:</span> árvores, frutos pendentes, espaço aéreo e subsolo na extensão útil.</li>
+          <li><span class="highlight">Artificialmente (por acessão):</span> construções, plantações.</li>
+        </ul>
+        <p><strong style="font-weight:500">Art. 80</strong> — Consideram-se imóveis <em>por determinação legal</em>: direitos reais sobre imóveis e ações que os asseguram; direito à herança.</p>
+        <p><strong style="font-weight:500">Art. 81</strong> — Não perdem o caráter de imóveis: materiais separados para reemprego na mesma obra; árvores abatidas para lenha se destinadas à construção da mesma propriedade.</p>
+        <div class="tip">Macete: imóvel = solo + incorporações + direitos reais imobiliários + herança.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Bens móveis</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 82–84</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 82</strong> — Móveis: os que se podem mover sem destruição da substância nem do destino.</p>
+        <p><strong style="font-weight:500">Art. 83</strong> — Móveis <em>por determinação legal</em>: energias com valor econômico; direitos reais sobre objetos móveis e ações correspondentes; direitos pessoais de caráter patrimonial e respectivas ações.</p>
+        <p><strong style="font-weight:500">Art. 84</strong> — Materiais destinados a construção enquanto não empregados; os provenientes de demolição.</p>
+        <div class="tip">Atenção: energia elétrica é bem móvel por determinação legal (art. 83, I). Cai bastante!</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Bens fungíveis, consumíveis e divisíveis</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 85–88</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 85</strong> — Fungíveis: bens móveis substituíveis por outros da mesma espécie, qualidade e quantidade.</p>
+        <p><strong style="font-weight:500">Art. 86</strong> — Consumíveis: os cujo uso importa destruição imediata (consumíveis de fato) ou destinados à alienação (consumíveis de direito).</p>
+        <p><strong style="font-weight:500">Art. 87</strong> — Divisíveis: os que se podem fracionar sem alteração na sua substância, diminuição considerável de valor, ou prejuízo do uso a que se destinam.</p>
+        <p><strong style="font-weight:500">Art. 88</strong> — Indivisíveis pela lei ou por vontade das partes (convencionalmente).</p>
+        <div class="tip">Fungível ≠ consumível: dinheiro é fungível e consumível; um quadro único é infungível e não consumível.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Bens singulares e coletivos</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 89–91</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 89</strong> — Singulares: considerados em si mesmos, ainda que reunidos.</p>
+        <p><strong style="font-weight:500">Art. 90</strong> — Coletivos (universalidade de fato): pluralidade de bens singulares que, pertinentes à mesma pessoa, têm destinação unitária (ex.: rebanho, biblioteca).</p>
+        <p><strong style="font-weight:500">Art. 91</strong> — Universalidade de direito: complexo de relações jurídicas dotadas de valor econômico (ex.: herança, patrimônio, empresa).</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Bens reciprocamente considerados (principal × acessório)</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 92–97</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 92</strong> — Principal: existe sobre si abstrato e concreto. Acessório: a existência supõe a do principal.</p>
+        <p><strong style="font-weight:500">Art. 93</strong> — Pertenças: bens que, não constituindo partes integrantes, se destinam de modo duradouro ao uso, serviço ou aformoseamento do principal. Não seguem o principal salvo disposição em contrário.</p>
+        <p><strong style="font-weight:500">Art. 94</strong> — Os negócios jurídicos sobre o bem principal abrangem as partes integrantes, mas <em>não</em> as pertenças, salvo se o contrário resultar da lei, da manifestação de vontade ou das circunstâncias do caso.</p>
+        <p><strong style="font-weight:500">Art. 95</strong> — Frutos e produtos podem ser alienados antecipada e separadamente.</p>
+        <p><strong style="font-weight:500">Art. 96</strong> — Frutos: naturais (renovam-se periodicamente), industriais (trabalho humano) e civis (rendimentos: aluguel, juros).</p>
+        <p><strong style="font-weight:500">Art. 97</strong> — Não se consideram benfeitorias as obras ou despesas a que obrigam o dono para conservar o bem ou evitar que se deteriore.</p>
+        <div class="tip">Benfeitorias: necessárias (conservação), úteis (facilitam o uso), voluptuárias (mero luxo). Pertenças não seguem o principal automaticamente — diferente das partes integrantes.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Bens públicos</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 98–103</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 98</strong> — São públicos os bens do domínio nacional pertencentes às pessoas jurídicas de direito público; todos os demais são particulares.</p>
+        <p><strong style="font-weight:500">Art. 99</strong> — Classificação dos bens públicos:</p>
+        <ul>
+          <li><span class="highlight">Uso comum do povo:</span> rios, mares, estradas, praias.</li>
+          <li><span class="highlight">Uso especial:</span> edifícios/terrenos de serviço público.</li>
+          <li><span class="highlight">Dominicais:</span> constituem patrimônio disponível (sem destinação específica).</li>
+        </ul>
+        <p><strong style="font-weight:500">Art. 100</strong> — Bens de uso comum e especial são <em>inalienáveis</em> enquanto conservarem essa qualificação.</p>
+        <p><strong style="font-weight:500">Art. 101</strong> — Dominicais podem ser alienados, observadas as exigências legais.</p>
+        <p><strong style="font-weight:500">Art. 102</strong> — Bens públicos <em>não estão sujeitos a usucapião</em>.</p>
+        <p><strong style="font-weight:500">Art. 103</strong> — Uso gratuito ou oneroso dos bens públicos depende de lei ou regulamento.</p>
+        <div class="tip">Art. 102 é um clássico de prova: bem público NÃO pode ser usucapido.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FATOS JURÍDICOS -->
+  <div class="section" id="fatos">
+    <h2>Fatos jurídicos — arts. 104 a 114</h2>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Requisitos de validade do negócio jurídico</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Art. 104</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p>Validade do negócio jurídico exige:</p>
+        <ul>
+          <li><span class="highlight">I</span> — Agente capaz</li>
+          <li><span class="highlight">II</span> — Objeto lícito, possível, determinado ou determinável</li>
+          <li><span class="highlight">III</span> — Forma prescrita ou não defesa em lei</li>
+        </ul>
+        <div class="tip">Macete: A-O-F → Agente capaz · Objeto lícito · Forma adequada.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Declaração de vontade — silêncio e simulação</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 107–110</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 107</strong> — Validade da declaração de vontade não depende de forma especial, salvo quando a lei exigir.</p>
+        <p><strong style="font-weight:500">Art. 108</strong> — Escritura pública é essencial para negócios com imóveis de valor superior a 30 salários mínimos. Abaixo disso, instrumento particular basta.</p>
+        <p><strong style="font-weight:500">Art. 109</strong> — Sem autorização legal, não pode ser suprimida, pelas partes, forma que a lei exige como substancial ao ato.</p>
+        <p><strong style="font-weight:500">Art. 110</strong> — Reserva mental: a manifestação de vontade subsiste ainda que o autor haja feito a reserva mental de não querer o que manifestou, salvo se dela o destinatário tinha conhecimento.</p>
+        <div class="tip">Art. 108: valor do imóvel ≤ 30 SM → escritura pública dispensável. Valor > 30 SM → escritura pública obrigatória. Muito cobrado!</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Interpretação do negócio jurídico</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 112–114</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 112</strong> — Nas declarações de vontade se atenderá mais à intenção nelas consubstanciada do que ao sentido literal da linguagem.</p>
+        <p><strong style="font-weight:500">Art. 113</strong> — Os negócios jurídicos devem ser interpretados conforme a <em>boa-fé</em> e os usos do lugar de sua celebração.</p>
+        <p><strong style="font-weight:500">Art. 114</strong> — Os negócios benéficos e a renúncia interpretam-se <em>estritamente</em>.</p>
+        <div class="tip">Regra geral = boa-fé + intenção. Negócio benéfico e renúncia = interpretação estrita (restritiva).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPRESENTAÇÃO -->
+  <div class="section" id="rep">
+    <h2>Representação — arts. 115 a 120</h2>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Representação legal e voluntária</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 115–116</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 115</strong> — Os poderes de representação conferem-se por lei ou pelo interessado.</p>
+        <ul>
+          <li><span class="highlight">Legal:</span> pais, tutores, curadores.</li>
+          <li><span class="highlight">Voluntária:</span> procuração.</li>
+        </ul>
+        <p><strong style="font-weight:500">Art. 116</strong> — A manifestação de vontade pelo representante nos limites de seus poderes produz efeitos <em>em relação ao representado</em>.</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Conflito de interesses e abuso de poder</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 117–118</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 117</strong> — <em>Autocontrato (contrato consigo mesmo):</em> salvo se a lei ou o representado o permitir, é anulável o negócio jurídico que o representante, em conflito de interesses com o representado, realizar consigo mesmo, em nome daquele.</p>
+        <p><strong style="font-weight:500">Art. 118</strong> — O representante é obrigado a provar às pessoas com quem tratar em nome do representado a existência de seus poderes, sob pena de responder pessoalmente pelos atos que praticar.</p>
+        <div class="tip">Art. 117: contrato consigo mesmo = anulável (regra geral). Cuidado: não é nulo, é anulável!</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-header" onclick="toggle(this)">
+        <span class="topic-title">Excesso de poder e ratificação</span>
+        <div style="display:flex;gap:6px;align-items:center"><span class="art-badge">Arts. 119–120</span><span class="toggle-icon">▾</span></div>
+      </div>
+      <div class="topic-body">
+        <p><strong style="font-weight:500">Art. 119</strong> — É anulável o negócio concluído pelo representante em conflito de interesses com o representado, se tal fato era ou devia ser do conhecimento de quem com aquele tratou. Prazo decadencial: <span class="highlight">180 dias</span>, contados da conclusão do negócio ou da cessação da incapacidade.</p>
+        <p><strong style="font-weight:500">Art. 120</strong> — Os requisitos e efeitos da representação legal são os que a lei estabelecer; os da representação voluntária são os constantes do Título VI, sobre o mandato.</p>
+        <div class="tip">Prazo de 180 dias do art. 119 é decadencial (e não prescricional). Detalhe que a prova adora!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="quiz">
+    <h2>Questões de fixação</h2>
+    <div class="score-bar">
+      <span class="score-num" id="score">0/0</span>
+      <span class="score-label">respostas corretas</span>
+    </div>
+    <div id="questions"></div>
+  </div>
+</div>
+
+<script>
+const questions = [
+  { q: "O direito à herança é classificado como bem imóvel no Código Civil?", opts: ["Sim, por determinação legal (art. 80)", "Não, é bem móvel por determinação legal", "Não se enquadra em nenhuma categoria", "Sim, pois herança envolve imóveis"], answer: 0, exp: "Art. 80, II: o direito à herança é imóvel por determinação legal, ainda que a herança seja composta só de bens móveis." },
+  { q: "A energia elétrica é considerada, pelo Código Civil, bem:", opts: ["Imóvel por destinação", "Móvel por determinação legal", "Bem público dominical", "Imóvel por natureza"], answer: 1, exp: "Art. 83, I: as energias com valor econômico são bens móveis por determinação legal." },
+  { q: "Para compra e venda de imóvel cujo valor seja inferior a 30 salários mínimos, é necessária escritura pública?", opts: ["Sim, sempre", "Não, instrumento particular é suficiente (art. 108)", "Somente se for imóvel urbano", "Somente se for imóvel rural"], answer: 1, exp: "Art. 108: a exigência de escritura pública só se aplica a imóveis com valor superior a 30 salários mínimos." },
+  { q: "Bens públicos de uso comum do povo podem ser adquiridos por usucapião?", opts: ["Sim, após 15 anos de posse mansa e pacífica", "Não, bens públicos são insuscetíveis de usucapião (art. 102)", "Sim, desde que seja imóvel urbano", "Somente bens dominicais podem ser usucapidos"], answer: 1, exp: "Art. 102: os bens públicos não estão sujeitos a usucapião." },
+  { q: "O contrato consigo mesmo (autocontrato) realizado pelo representante, sem autorização, é:", opts: ["Nulo de pleno direito", "Anulável (art. 117)", "Válido, pois o representante age em nome do representado", "Ineficaz"], answer: 1, exp: "Art. 117: é anulável (não nulo) o negócio realizado pelo representante consigo mesmo, salvo autorização do representado ou da lei." },
+  { q: "Qual o prazo decadencial para anular negócio jurídico celebrado pelo representante em conflito de interesses (art. 119)?", opts: ["90 dias", "1 ano", "180 dias", "4 anos"], answer: 2, exp: "Art. 119, parágrafo único: o prazo decadencial é de 180 dias, contados da conclusão do negócio ou da cessação da incapacidade." },
+  { q: "As pertenças (art. 93) seguem automaticamente o bem principal nos negócios jurídicos?", opts: ["Sim, sempre seguem o principal", "Não, salvo disposição em contrário (art. 94)", "Somente as pertenças móveis seguem", "Sim, desde que registradas"], answer: 1, exp: "Art. 94: os negócios sobre o principal não abrangem as pertenças, salvo se o contrário resultar da lei, da vontade ou das circunstâncias." },
+  { q: "Segundo o art. 113, os negócios jurídicos devem ser interpretados conforme:", opts: ["O sentido literal das palavras", "A boa-fé e os usos do lugar de celebração", "A vontade exclusiva do credor", "A forma escrita do contrato"], answer: 1, exp: "Art. 113: interpretação pelo critério da boa-fé objetiva e dos usos do lugar de celebração." },
+];
+
+let answered = Array(questions.length).fill(false);
+let correct = 0;
+
+function renderQuiz() {
+  const c = document.getElementById('questions');
+  c.innerHTML = questions.map((q, i) => `
+    <div class="quiz-q" id="q${i}">
+      <p>${i+1}. ${q.q}</p>
+      <div class="options">
+        ${q.opts.map((o, j) => `<button class="opt" onclick="answer(${i},${j})">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}
+      </div>
+      <div class="feedback" id="fb${i}" style="display:none"></div>
+    </div>
+  `).join('');
+}
+
+function answer(qi, oi) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const q = questions[qi];
+  const opts = document.querySelectorAll(`#q${qi} .opt`);
+  opts.forEach((btn, j) => {
+    if (j === q.answer) btn.classList.add('correct');
+    else if (j === oi) btn.classList.add('wrong');
+    btn.style.cursor = 'default';
+  });
+  const fb = document.getElementById(`fb${qi}`);
+  fb.style.display = 'block';
+  if (oi === q.answer) {
+    correct++;
+    fb.className = 'feedback ok';
+    fb.textContent = '✓ Correto! ' + q.exp;
+  } else {
+    fb.className = 'feedback no';
+    fb.textContent = '✗ Incorreto. ' + q.exp;
+  }
+  document.getElementById('score').textContent = correct + '/' + answered.filter(Boolean).length;
+}
+
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const icon = header.querySelector('.toggle-icon');
+  body.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+renderQuiz();
+</script>
